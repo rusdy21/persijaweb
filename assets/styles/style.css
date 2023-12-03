@@ -8,8 +8,6 @@ body {
   padding: 0;
 }
 
- 
-
 h2,
 h3 {
   color: #872341;
@@ -36,13 +34,15 @@ nav a:hover {
 
 main {
   padding: 20px;
-
-  overflow: auto;
+  display: flex;
+  gap: 1.5rem;
 }
 
 #content {
-  float: left;
-  width: 75%;
+  flex: 5;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1em 2rem;
 }
 
 .profile header {
@@ -64,7 +64,7 @@ main {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 20px;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 
 .jumbotron {
@@ -73,6 +73,13 @@ main {
   background-color: #be3144;
   text-align: center;
   color: white;
+}
+
+nav ul {
+  padding-inline: 4rem;
+  display: flex;
+
+  gap: 2rem;
 }
 
 nav li {
@@ -90,37 +97,43 @@ nav {
 }
 
 aside {
-  float: right;
-  width: 25%;
-
-  padding-left: 20px;
+  flex: 1;
 }
 
-@media screen and (max-width: 1000px) {
-  #content,
-  aside {
-    width: 100%;
-    padding: 0;
-  }
-}
 
 header {
   display: inline;
 }
 
+/* Perangkat dengan lebar layar 1200px dan di bawahnya */
+@media screen and (max-width: 1200px) {
+  main {
+    flex-flow: column nowrap;
+  }
+  main aside {
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  nav ul {
+    justify-content: center;
+  }
+ 
+  main aside {
+    align-self: stretch;
+  }
+}
+
 /*added Slider*/
 
-* {box-sizing:border-box}
+* {
+  box-sizing: border-box;
+}
 
 /* Slideshow container */
 .slideshow-container {
- /*max-width: 100%;
-  position: relative;
-  margin: auto;*/
-
-  padding: 20px;
-  border-radius: 5px;
-  overflow: auto;
+ flex: auto;
 }
 
 /* Hide the images by default */
@@ -129,7 +142,8 @@ header {
 }
 
 /* Next & previous buttons */
-.prev, .next {
+.prev,
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -142,6 +156,7 @@ header {
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
+  visibility: hidden;
 }
 
 /* Position the "next button" to the right */
@@ -151,8 +166,9 @@ header {
 }
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Caption text */
@@ -185,9 +201,11 @@ header {
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
+  visibility: hidden;
 }
 
-.active, .dot:hover {
+.active,
+.dot:hover {
   background-color: #717171;
 }
 
@@ -198,6 +216,10 @@ header {
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
